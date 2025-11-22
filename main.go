@@ -93,7 +93,7 @@ type model struct {
 func initialModel() model {
 	return model{
 		step:   pickColor,
-		colors: []string{"Red", "Green", "Blue", "Yellow", "White"},
+		colors: []string{"Red", "Green", "Blue", "Yellow", "Pink", "White"},
 		cursor: 0,
 	}
 }
@@ -135,9 +135,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.colorCode = "27"
 				case "Yellow":
 					m.colorCode = "220"
+				case "Pink":
+					m.colorCode = "205"
 				case "White":
 					m.colorCode = "15"
 				}
+
 				m.step = enterText
 			case "q":
 				return m, tea.Quit
@@ -194,13 +197,15 @@ func (m model) View() string {
 				colorCode = "27"
 			case "Yellow":
 				colorCode = "220"
+			case "Pink":
+				colorCode = "205"
 			case "White":
 				colorCode = "15"
 			}
 
 			if i == m.cursor {
 				list += lipgloss.NewStyle().
-					Foreground(lipgloss.Color(colorCode)). // USE REAL COLOR
+					Foreground(lipgloss.Color(colorCode)).
 					Bold(true).
 					Render("→ "+c) + "\n"
 			} else {
