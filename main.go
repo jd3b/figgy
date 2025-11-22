@@ -93,7 +93,7 @@ type model struct {
 func initialModel() model {
 	return model{
 		step:   pickColor,
-		colors: []string{"Red", "Green", "Blue", "Yellow", "Pink", "White"},
+		colors: []string{"Red", "Green", "Blue", "Yellow", "Pink", "Cyan", "White"},
 		cursor: 0,
 	}
 }
@@ -137,6 +137,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.colorCode = "220"
 				case "Pink":
 					m.colorCode = "205"
+				case "Cyan":
+					m.colorCode = "51"
 				case "White":
 					m.colorCode = "15"
 				}
@@ -199,6 +201,8 @@ func (m model) View() string {
 				colorCode = "220"
 			case "Pink":
 				colorCode = "205"
+			case "Cyan":
+				colorCode = "51"
 			case "White":
 				colorCode = "15"
 			}
